@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+
+		<RollingFile name="@log4j.appender.angular.name@" fileName="@log4j.appender.angular.fileName@"
+			append="true" filePattern="@log4j.appender.angular.filePattern@">
+			<PatternLayout pattern="@log4j.appender.angular.pattern@" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="@log4j.appender.angular.maxFileSize@" />
+			</Policies>
+			<DefaultRolloverStrategy max="@log4j.appender.angular.maxFileNbre@" />
+			<Filters>
+				<ThresholdFilter level="error" onMatch="DENY"
+					onMismatch="NEUTRAL" />
+				<ThresholdFilter level="fatal" onMatch="DENY"
+					onMismatch="NEUTRAL" />
+			</Filters>
+		</RollingFile>
+
+		<RollingFile name="@log4j.appender.angular_error.name@"
+			fileName="@log4j.appender.angular_error.fileName@" append="true"
+			filePattern="@log4j.appender.angular_error.filePattern@">
+			<PatternLayout pattern="@log4j.appender.angular_error.pattern@" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="@log4j.appender.angular_error.maxFileSize@" />
+			</Policies>
+			<DefaultRolloverStrategy max="@log4j.appender.angular_error.maxFileNbre@" />
+		</RollingFile>
+
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayout pattern="@log4j.appender.stdout.pattern@" />
+		</Console>
+
+	</Appenders>
+	<Loggers>
+
+		<Root level="info">
+			
+			<AppenderRef ref="angular_error" level="error" />
+			<AppenderRef ref="STDOUT" level="info" />
+		</Root>
+
+		<Logger name="com.sban" level="@log4j.logger.com.sban.level@">
+			<AppenderRef ref="angular" />
+		</Logger>
+		
+
+	</Loggers>
+</Configuration>

@@ -1,0 +1,60 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" [routerLink]="['']">{{'menu.homepage' | translate}}</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a [routerLink]="['about']">{{'menu.about' | translate}}</a>
+                </li>
+                <li>
+                    <a [routerLink]="['contact']">{{'menu.contact' | translate}}</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li *ngIf="!userService.isLogged()">
+                    <a [routerLink]="['login']">{{'menu.login' | translate}}</a>
+                </li>
+                <li *ngIf="!userService.isLogged()">
+                    <a [routerLink]="['register']">{{'menu.register' | translate}}</a>
+                </li>
+                <li *ngIf="!userService.isLogged()">
+                    <a [routerLink]="['addClient']">{{'menu.client' | translate}}</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/clients']">listCLient</a>
+                 </li>
+                 
+                 <li *ngIf="!userService.isLogged()">
+                    <a [routerLink]="['addCommande']">{{'menu.commande' | translate}}</a>
+                 </li>
+                 
+                  <li *ngIf="!userService.isLogged()">
+                    <a [routerLink]="['/commandes']">listCommande</a>
+                 </li>
+                <li *ngIf="userService.isLogged()">
+                    <a>{{userService.user.login}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section>
+    <div class="container">
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-sm-6 col-sm-offset-3">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+
+    </div>
+</section>

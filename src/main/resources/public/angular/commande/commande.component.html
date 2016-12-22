@@ -1,0 +1,68 @@
+<page-header [title]="'commandePage.header' | translate"></page-header>
+
+<form class="form-horizontal basic-form" [formGroup]="form" (ngSubmit)="onSubmitForm()">
+
+     <div class="alert alert-danger" *ngFor="let error of errors">
+        <p *ngIf="error.field">{{'serverErrors.' + error.messageCode | translate:{fieldName:
+                               'commandePage.' + error.field | translate} }}</p>
+        <p *ngIf="!error.field">{{'serverErrors.' + error.messageCode | translate}}</p>
+    </div>
+
+    <div class="alert alert-info" *ngIf="res">
+        res: {{res}}
+    </div>
+    
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-6">
+               <input-group [type]="'text'" [id]="'numero'" [form]="form" [label]="'commandePage.numero' | translate"
+                 [placeholder]="'commandePage.numeroEnter' | translate">
+              </input-group>
+            </div>
+        </div>
+    </div>
+
+	<div class="form-group">
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="form-group has-feedback">
+					<label class="control-label col-sm-4" for="dateCommande"><i
+						class="fa fa-calendar-o" aria-hidden="true"></i>Date Commande:</label>
+					<div class="col-sm-8">
+
+						<input class="ng-untouched ng-pristine ng-invalid"
+							type="date" id="dateCommande" placeholder="Enter Date"
+							[formControl]="form.controls['dateTimeCommande']" />
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+		<div class="form-group">
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="form-group has-feedback">
+					<label class="control-label col-sm-4" for="clientId"><i
+						class="fa fa-calendar-o" aria-hidden="true"></i>Clients:</label>
+					<div class="col-sm-8">
+							
+					 <select class="form-control" [formControl]="form.controls['clientMap']" name="Select client" id="clientId" class="ui fluid search selection dropdown"> 
+                       <option *ngFor="let c of clients" [value]="c.id">{{c.name}}</option>
+                     </select>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+ 
+    <div class="form-group">
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-default pull-right"
+                    [disabled]="!form.valid">{{'common.button.submit' | translate}}
+            </button>
+        </div>
+    </div>
+</form>

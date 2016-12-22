@@ -1,0 +1,39 @@
+<page-header [title]="'clientPage.header' | translate"></page-header>
+
+<form class="form-horizontal basic-form" [formGroup]="form"  (ngSubmit)="onSubmitForm()" *ngIf="clientLoaded" novalidate>
+
+     <div class="alert alert-danger" *ngFor="let error of errors">
+        <p *ngIf="error.field">{{'serverErrors.' + error.messageCode | translate:{fieldName:
+                               'clientPage.' + error.field | translate} }}</p>
+        <p *ngIf="!error.field">{{'serverErrors.' + error.messageCode | translate}}</p>
+    </div>
+
+    <div class="alert alert-info" *ngIf="res">
+        res: {{res}}
+    </div>
+
+ 
+    <input-group [(ngModel)]="id" [ngModelOptions]="{standalone: true}" [type]="'text'" [id]="'id'" [form]="form" [label]="'clientPage.name' | translate"   style="display: none;"
+                 [placeholder]="'clientPage.nameEnter' | translate">
+    </input-group>
+    
+    <input-group [(ngModel)]="name" [ngModelOptions]="{standalone: true}" [type]="'text'" [id]="'name'" [form]="form" [label]="'clientPage.name' | translate" 
+                 [placeholder]="'clientPage.nameEnter' | translate">
+    </input-group>
+
+    <input-group  [(ngModel)]="address" [ngModelOptions]="{standalone: true}" [type]="'text'" [id]="'address'" [form]="form" [label]="'clientPage.address' | translate" 
+                 [placeholder]="'clientPage.address' | translate">
+    </input-group> 
+ 
+     <list-group [(ngModel)]="type" [ngModelOptions]="{standalone: true}" *ngFor="let field of fields" [id]="'type'" [form]="form" [label]="'clientPage.type' | translate" (selectValueEvent)="onItemChanged($event)"
+            [fieldInfo]="field"></list-group>
+    
+
+    <div class="form-group">
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-default pull-right"
+                    [disabled]="!form.valid">{{'common.button.submit' | translate}}
+            </button>
+        </div>
+    </div>
+</form>

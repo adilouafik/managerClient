@@ -1,0 +1,39 @@
+<page-header [title]="'registerPage.header' | translate"></page-header>
+
+<form class="form-horizontal basic-form" [formGroup]="form" (ngSubmit)="onSubmitForm()">
+
+     <div class="alert alert-danger" *ngFor="let error of errors">
+        <p *ngIf="error.field">{{'serverErrors.' + error.messageCode | translate:{fieldName:
+                               'registerPage.' + error.field | translate} }}</p>
+        <p *ngIf="!error.field">{{'serverErrors.' + error.messageCode | translate}}</p>
+    </div>
+
+    <div class="alert alert-info" *ngIf="res">
+        res: {{res}}
+    </div>
+
+    <input-group [type]="'text'" [id]="'login'" [form]="form" [label]="'registerPage.login' | translate"
+                 [placeholder]="'registerPage.loginEnter' | translate">
+    </input-group>
+
+    <input-group [type]="'text'" [id]="'email'" [form]="form" [label]="'registerPage.email' | translate"
+                 [placeholder]="'registerPage.emailEnter' | translate">
+    </input-group>
+
+    <input-group [type]="'password'" [id]="'password'" [form]="form" [label]="'registerPage.password' | translate"
+                 [placeholder]="'registerPage.passwordEnter' | translate">
+    </input-group>
+
+    <input-group [type]="'password'" [id]="'passwordRepeated'" [form]="form"
+                 [label]="'registerPage.repeatedPassword' | translate"
+                 [placeholder]="'registerPage.repeatedPasswordEnter' | translate">
+    </input-group>
+
+    <div class="form-group">
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-default pull-right"
+                    [disabled]="!form.valid">{{'common.button.submit' | translate}}
+            </button>
+        </div>
+    </div>
+</form>

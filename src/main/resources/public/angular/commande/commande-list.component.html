@@ -1,0 +1,69 @@
+<div [@flyInOut]="'in'">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th><i class="fa fa-text-width" aria-hidden="true"></i> {{'commandePage.numero' | translate}}</th>
+                <th><i class="fa fa-user" aria-hidden="true"></i>Date commande</th>
+                <th><i class="fa fa-paragraph" aria-hidden="true"></i> client Name</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let commande of commandess | paginate: { itemsPerPage: 2, currentPage: p }">
+                <td> {{commande.numero}}</td>
+                <td>{{commande.dateTimeCommande}}</td>
+                
+                 <td *ngIf="commande.client.name">{{commande.client.name}}</td>
+                 <td *ngIf="!commande.client.name">{{commande.client}}</td>
+                 
+                <td><button class="btn btn-primary" (click)="viewCommandeDetails(commande.id)">
+                      <i class="fa fa-info-circle" aria-hidden="true"></i>Details</button>
+                </td>
+                <td><a class="btn btn-primary" [routerLink]="['/commandes',commande.id,'edit']"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a></td>
+                <td>
+                    <button class="btn btn-danger" (click)="removeCommande(commande)"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+           <pagination-controls (pageChange)="p = $event" #api></pagination-controls>
+</div>
+
+<div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" *ngIf="selectedCommandeLoaded">
+        <div class="modal-content">
+            <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="hideChildModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                <h4>{{commandeDetails.numero}} details</h4>
+            </div>
+            <div class="modal-body">
+                <form ngNoForm method="post">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label"><i class="fa fa-user" aria-hidden="true"></i>Numero</label>
+                                <input type="text" class="form-control" [(ngModel)]="commandeDetails.numero" disabled />
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="control-label"><i class="fa fa-text-width" aria-hidden="true"></i>Date Commande</label>
+                                <input type="text" class="form-control" [(ngModel)]="commandeDetails.dateTimeCommande" disabled />
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="control-label"><i class="fa fa-paragraph" aria-hidden="true"></i>Client Name</label>
+                                <input type="text" class="form-control" [(ngModel)]="commandeDetails.client.name" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

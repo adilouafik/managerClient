@@ -1,0 +1,39 @@
+<div class="form-group has-feedback" [ngClass]="{'has-error': dynamicControl.errors && dynamicControl.dirty,
+                                    'has-success': !dynamicControl.errors && dynamicControl.dirty}">
+    <label class="control-label col-sm-4" [attr.for]="id">{{label}}:</label>
+    <div class="col-sm-8">
+	    <select [(ngModel)]="value" type="text" [value]="fieldInfo.value"  [id]="id" [formControl]="dynamicControl" (ngModelChange)="onSelect($event)">
+	      <option *ngFor="let option of fieldInfo.options" >
+	        {{ option }}
+	      </option>
+	    </select>   
+
+        <span *ngIf="!dynamicControl.errors && dynamicControl.touched"
+              class="glyphicon glyphicon-ok form-control-feedback"></span>
+        <span *ngIf="dynamicControl.errors && dynamicControl.touched"
+              class="glyphicon glyphicon-remove form-control-feedback"></span>
+
+        <ul *ngIf="dynamicControl.errors && dynamicControl.touched">
+            <li class="invalid-field" *ngIf="dynamicControl.errors.hasOwnProperty('required')">
+                {{'errors.required' | translate:{fieldName: label | lowercase} }}
+            </li>
+            <li class="invalid-field" *ngIf="dynamicControl.errors.hasOwnProperty('minlength')">
+                {{'errors.minlength' | translate:{fieldName: label |
+                lowercase, requiredLength: dynamicControl.errors.minlength.requiredLength} }}
+            </li>
+            <li class="invalid-field" *ngIf="dynamicControl.errors.hasOwnProperty('maxlength')">
+                {{'errors.maxlength' | translate:{fieldName: label |
+                lowercase, requiredLength: dynamicControl.errors.maxlength.requiredLength} }}
+            </li>
+            <li class="invalid-field" *ngIf="dynamicControl.errors.hasOwnProperty('emailAddress')">
+                {{'errors.emailAddress' | translate:{fieldName: label | lowercase} }}
+            </li>
+            <li class="invalid-field" *ngIf="dynamicControl.errors.hasOwnProperty('regexPassword')">
+                {{'errors.illegalPassword' | translate:{fieldName: label | lowercase} }}
+            </li>
+            <li class="invalid-field" *ngIf="dynamicControl.errors.hasOwnProperty('passwordsNotEquivalent')">
+                {{'errors.passwordsNotEquivalent' | translate }}
+            </li>
+        </ul>
+    </div>
+</div>

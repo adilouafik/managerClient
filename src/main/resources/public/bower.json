@@ -1,0 +1,6 @@
+{
+  "name": "scheduler.spa",
+  "dependencies": {
+    "font-awesome": "latest"
+  }
+}

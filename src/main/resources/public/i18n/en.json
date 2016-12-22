@@ -1,0 +1,69 @@
+{
+  "registerPage": {
+    "header": "Register page",
+    "login": "Login",
+    "loginEnter": "Enter login",
+    "email": "E-mail",
+    "emailEnter": "Enter e-mail",
+    "password": "Password",
+    "passwordEnter": "Enter password",
+    "repeatedPassword": "Repeat password",
+    "repeatedPasswordEnter": "Enter password one more time"
+  },
+
+  "loginPage": {
+    "header": "Login page",
+    "login": "Login",
+    "loginEnter": "Enter login",
+    "password": "Password",
+    "passwordEnter": "Enter password"
+  },
+  "clientPage": {
+    "header": "Client page",
+    "name": "Name",
+    "nameEnter": "Enter Name",
+    "address": "Address",
+    "addressEnter": "Enter Address",
+    "type": "Type",
+    "typeEnter": "Enter Type"
+  },
+  
+  "commandePage": {
+    "header": "Commande page",
+    "numero": "Numero",
+    "numeroEnter": "Enter Numero"
+  },
+
+  "menu": {
+    "homepage": "Home page",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Register",
+    "client": "Client",
+    "commande": "Commande"
+    
+  },
+  "common": {
+    "button": {
+      "submit": "Submit"
+    }
+  },
+  "errors": {
+    "required": "Field {{fieldName}} is required",
+    "minlength": "Field {{fieldName}} cannot be shorter than {{requiredLength}} characters",
+    "maxlength": "Field {{fieldName}} cannot be longer than {{requiredLength}} characters",
+    "emailAddress": "Field {{fieldName}} must be a valid e-mail address",
+    "illegalPassword": "Field {{fieldName}} must contain at least one lower case, upper case and a number, the only special symbols allowed are _@#$%",
+    "passwordsNotEquivalent": "Passwords have to be equivalent"
+  },
+  "serverErrors": {
+    "emailTaken": "Such email is already taken",
+    "usernameTaken": "Such username is already taken",
+    "length": "Length of field {{fieldName}} is incorrect",
+    "isNull": "Field {{fieldName}} cannot be empty",
+    "email": "Field {{fieldName}} has to be an valid e-mail address",
+    "addressTaken":"Such address is already taken",
+    "nameClientTaken": "Such name client is already taken"
+  }
+}
